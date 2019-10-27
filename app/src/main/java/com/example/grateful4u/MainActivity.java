@@ -18,6 +18,7 @@ import com.example.grateful4u.controller.NoteAdapter;
 import com.example.grateful4u.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference noteBookRef = db.collection("Notebook");
     private NoteAdapter adapter;
     public static final String DOC_ID = "doc id";
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUpRecyclerView();
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -110,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_view_mood) {
             startActivity(new Intent(MainActivity.this, ViewMoodActivity.class));
             return true;
+        } else if (id == R.id.action_logout) {
+            firebaseAuth.signOut();
+            startActivity(new Intent(MainActivity.this, AuthenticateActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
