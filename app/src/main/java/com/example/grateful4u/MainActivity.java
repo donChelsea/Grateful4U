@@ -53,12 +53,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MoodFragment moodFragment = MoodFragment.newInstance();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, moodFragment)
-                        .addToBackStack("mood")
-                        .commit();
-                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, ViewMoodActivity.class));
             }
         });
 
