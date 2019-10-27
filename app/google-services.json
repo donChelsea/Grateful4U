@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "623947706479",
+    "firebase_url": "https://grateful4u-70ff2.firebaseio.com",
+    "project_id": "grateful4u-70ff2",
+    "storage_bucket": "grateful4u-70ff2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623947706479:android:687bdabe76fec822c59d9a",
+        "android_client_info": {
+          "package_name": "com.example.grateful4u"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623947706479-p79jmp5buircb0c02ksdk538735e21rl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.grateful4u",
+            "certificate_hash": "fdf30e8e615eee64773c707803a9e3c9537710c1"
+          }
+        },
+        {
+          "client_id": "623947706479-ig4jgr5gs4qhvrklv38vj97ggku72i79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjuUe5E-ECx_lwrzosDqOQQ1o-h5Cbd_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623947706479-ig4jgr5gs4qhvrklv38vj97ggku72i79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
