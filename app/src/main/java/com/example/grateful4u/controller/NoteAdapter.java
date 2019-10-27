@@ -12,14 +12,16 @@ import com.example.grateful4u.Note;
 import com.example.grateful4u.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-
-import org.w3c.dom.Text;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.NoteHolder> {
+    public OnNoteClickListenerInterface listenerInterface;
+
 
     public NoteAdapter(@NonNull FirestoreRecyclerOptions<Note> options) {
         super(options);
     }
+
 
     @Override
     protected void onBindViewHolder(@NonNull NoteHolder holder, int position, @NonNull Note model) {
@@ -33,6 +35,10 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
         return new NoteHolder(view);
     }
 
+    public void deleteItem(int position) {
+        getSnapshots().getSnapshot(position).getReference().delete();
+    }
+
     class NoteHolder extends RecyclerView.ViewHolder {
         protected TextView titleTv, dateTv, descriptionTv, moodTv;
 
@@ -43,6 +49,16 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
             dateTv = itemView.findViewById(R.id.textview_note_date);
             descriptionTv = itemView.findViewById(R.id.textview_note_preview);
             moodTv = itemView.findViewById(R.id.textview_mood);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listenerInterface != null) {
+                        listenerInterface.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
 
         public void onBind(Note note) {
@@ -52,5 +68,15 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
             moodTv.setText(note.getMood());
         }
     }
+
+
+    public interface OnNoteClickListenerInterface {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+
+    public void setOnNoteClickListener(OnNoteClickListenerInterface listener) {
+
+    }
+
 
 }

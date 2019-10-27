@@ -27,7 +27,6 @@ public class NewNoteActivity extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    View view = new View(this);
     Spinner spinner;
 
 
@@ -35,12 +34,18 @@ public class NewNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_note);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
+        setTitle("Create new note");
 
         spinner = findViewById(R.id.spinner_mood);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.mood_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        titleEt = findViewById(R.id.edittext_title);
+        descriptionEt = findViewById(R.id.edittext_description);
+        moodTitleTv = findViewById(R.id.textview_pick_mood);
 
     }
 
@@ -66,12 +71,12 @@ public class NewNoteActivity extends AppCompatActivity {
         String title = titleEt.getText().toString();
         String description = descriptionEt.getText().toString();
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
+        dateFormat = new SimpleDateFormat("EEE, MM dd yyyy");
         date = dateFormat.format(calendar.getTime());
         String mood = spinner.getSelectedItem().toString();
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
-           Snackbar.make(view, "To finish that thought...", Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(this, "To finish that thought...", Toast.LENGTH_SHORT).show();
         }
 
         CollectionReference notebookRef = FirebaseFirestore.getInstance()
