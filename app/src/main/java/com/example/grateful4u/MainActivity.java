@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.grateful4u.controller.NoteAdapter;
+import com.example.grateful4u.frag.NoteDetailFragment;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference noteBookRef = db.collection("Notebook");
     private NoteAdapter adapter;
+    public static final String DOC_ID = "doc id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUpRecyclerView();
+
     }
 
     private void setUpRecyclerView() {
@@ -73,10 +76,15 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setOnNoteClickListener(new NoteAdapter.OnNoteClickListenerInterface() {
             @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                Note note = documentSnapshot.toObject(Note.class);
-                String path = documentSnapshot.getReference().getPath();
+            public void onNoteClick(DocumentSnapshot documentSnapshot, int position) {
+                String docId = documentSnapshot.getReference().getId();
+                Log.d("main", "main: docId: " + docId);
 
+                NoteDetailFragment noteDetailFragment = NoteDetailFragment.newInstance(docId);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, noteDetailFragment)
+                        .addToBackStack("note")
+                        .commit();
             }
         });
     }

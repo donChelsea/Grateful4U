@@ -1,5 +1,6 @@
 package com.example.grateful4u.controller;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grateful4u.Note;
 import com.example.grateful4u.R;
+import com.example.grateful4u.frag.NoteDetailFragment;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -55,7 +57,7 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION && listenerInterface != null) {
-                        listenerInterface.onItemClick(getSnapshots().getSnapshot(position), position);
+                        listenerInterface.onNoteClick(getSnapshots().getSnapshot(position), position);
                     }
                 }
             });
@@ -69,13 +71,12 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
         }
     }
 
-
     public interface OnNoteClickListenerInterface {
-        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+        void onNoteClick (DocumentSnapshot documentSnapshot, int position);
     }
 
     public void setOnNoteClickListener(OnNoteClickListenerInterface listener) {
-
+        this.listenerInterface = listener;
     }
 
 

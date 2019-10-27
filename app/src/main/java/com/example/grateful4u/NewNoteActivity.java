@@ -28,6 +28,7 @@ public class NewNoteActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private String date;
     Spinner spinner;
+    public String docId;
 
 
     @Override
@@ -71,18 +72,19 @@ public class NewNoteActivity extends AppCompatActivity {
         String title = titleEt.getText().toString();
         String description = descriptionEt.getText().toString();
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("EEE, MM dd yyyy");
+        dateFormat = new SimpleDateFormat("EEE, MM/dd/yyyy");
         date = dateFormat.format(calendar.getTime());
         String mood = spinner.getSelectedItem().toString();
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this, "To finish that thought...", Toast.LENGTH_SHORT).show();
+        } else {
+            CollectionReference notebookRef = FirebaseFirestore.getInstance()
+                    .collection("Notebook");
+            notebookRef.add(new Note(title, description, date, mood));
+            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
-        CollectionReference notebookRef = FirebaseFirestore.getInstance()
-                .collection("Notebook");
-        notebookRef.add(new Note(title, description, date, mood));
-        Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
-        finish();
     }
 }
