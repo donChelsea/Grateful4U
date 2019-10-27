@@ -19,14 +19,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import static com.example.grateful4u.ViewMoodActivity.moodCalm;
-import static com.example.grateful4u.ViewMoodActivity.moodConfused;
-import static com.example.grateful4u.ViewMoodActivity.moodExcited;
-import static com.example.grateful4u.ViewMoodActivity.moodHappy;
-import static com.example.grateful4u.ViewMoodActivity.moodInspired;
-import static com.example.grateful4u.ViewMoodActivity.moodInterested;
-import static com.example.grateful4u.ViewMoodActivity.moodSad;
-
 public class NewNoteActivity extends AppCompatActivity {
     protected EditText titleEt, descriptionEt;
     protected TextView moodTitleTv;
@@ -35,7 +27,6 @@ public class NewNoteActivity extends AppCompatActivity {
     private String date;
     Spinner spinner;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    public CollectionReference notebookRef = db.collection("Notebook");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,31 +83,6 @@ public class NewNoteActivity extends AppCompatActivity {
             notebookRef.add(new Note(title, description, date, mood));
             Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
             finish();
-        }
-
-        switch ((int) spinner.getSelectedItemId()) {
-            case 0:
-                moodCalm = moodCalm + 1;
-                return;
-            case 1:
-                moodExcited = moodExcited + 1;
-                return;
-            case 2:
-                moodInterested = moodInterested + 1;
-                return;
-            case 3:
-                moodConfused = moodConfused + 1;
-                return;
-            case 4:
-                moodInspired = moodInspired + 1;
-                return;
-            case 5:
-                moodHappy = moodHappy + 1;
-                return;
-            case 6:
-                moodSad = moodSad + 1;
-                return;
-            default:
         }
     }
 

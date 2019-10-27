@@ -21,11 +21,5 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
-    <Button
-        android:id="@+id/button_mood_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="to mood activity"/>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

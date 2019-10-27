@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference noteBookRef = db.collection("Notebook");
     private NoteAdapter adapter;
     public static final String DOC_ID = "doc id";
-    int documentCount;
-    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +41,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, NewNoteActivity.class));
-            }
-        });
-
-        button = findViewById(R.id.button_mood_frag);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ViewMoodActivity.class));
             }
         });
 
@@ -119,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_view_mood) {
+            startActivity(new Intent(MainActivity.this, ViewMoodActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
