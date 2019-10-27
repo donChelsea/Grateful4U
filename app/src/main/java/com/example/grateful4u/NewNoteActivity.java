@@ -1,7 +1,5 @@
 package com.example.grateful4u;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,12 +10,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.grateful4u.model.Note;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static com.example.grateful4u.ViewMoodActivity.moodCalm;
+import static com.example.grateful4u.ViewMoodActivity.moodConfused;
+import static com.example.grateful4u.ViewMoodActivity.moodExcited;
+import static com.example.grateful4u.ViewMoodActivity.moodHappy;
+import static com.example.grateful4u.ViewMoodActivity.moodInspired;
+import static com.example.grateful4u.ViewMoodActivity.moodInterested;
+import static com.example.grateful4u.ViewMoodActivity.moodSad;
 
 public class NewNoteActivity extends AppCompatActivity {
     protected EditText titleEt, descriptionEt;
@@ -27,14 +35,7 @@ public class NewNoteActivity extends AppCompatActivity {
     private String date;
     Spinner spinner;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    public static int moodHappy;
-    public static int moodCalm;
-    public static int moodExcited;
-    public static int moodInterested;
-    public static int moodInspired;
-    public static int moodSad;
-    public static int moodConfused;
-    public static int documentCount;
+    public CollectionReference notebookRef = db.collection("Notebook");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,16 @@ public class NewNoteActivity extends AppCompatActivity {
         date = dateFormat.format(calendar.getTime());
         String mood = spinner.getSelectedItem().toString();
 
+        if (title.trim().isEmpty() || description.trim().isEmpty()) {
+            Toast.makeText(this, "To finish that thought...", Toast.LENGTH_SHORT).show();
+        } else {
+            CollectionReference notebookRef = FirebaseFirestore.getInstance()
+                    .collection("Notebook");
+            notebookRef.add(new Note(title, description, date, mood));
+            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         switch ((int) spinner.getSelectedItemId()) {
             case 0:
                 moodCalm = moodCalm + 1;
@@ -105,27 +116,8 @@ public class NewNoteActivity extends AppCompatActivity {
             case 6:
                 moodSad = moodSad + 1;
                 return;
+            default:
         }
-
-        if (title.trim().isEmpty() || description.trim().isEmpty()) {
-            Toast.makeText(this, "To finish that thought...", Toast.LENGTH_SHORT).show();
-        } else {
-            CollectionReference notebookRef = FirebaseFirestore.getInstance()
-                    .collection("Notebook");
-            notebookRef.add(new Note(title, description, date, mood));
-            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
-//        db.collection("Notebook").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                documentCount = queryDocumentSnapshots.size();
-//            }
-//        });
-//
-//        Log.d("newnote", "new note: " + moodInspired/documentCount);
-
     }
 
 }
