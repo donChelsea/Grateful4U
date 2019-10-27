@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewNoteActivity"></activity>
+        <activity android:name=".ViewMoodActivity"></activity>
+        <activity
+            android:name=".ViewNoteActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NewNoteActivity"
             android:parentActivityName=".MainActivity" />

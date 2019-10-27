@@ -2,15 +2,12 @@ package com.example.grateful4u;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.grateful4u.controller.NoteAdapter;
-import com.example.grateful4u.frag.NoteDetailFragment;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,16 +16,23 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.example.grateful4u.controller.NoteAdapter;
+import com.example.grateful4u.frag.MoodFragment;
+import com.example.grateful4u.model.Note;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference noteBookRef = db.collection("Notebook");
     private NoteAdapter adapter;
     public static final String DOC_ID = "doc id";
+    int documentCount;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, NewNoteActivity.class));
+            }
+        });
+
+        button = findViewById(R.id.button_mood_frag);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MoodFragment moodFragment = MoodFragment.newInstance();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, moodFragment)
+                        .addToBackStack("mood")
+                        .commit();
+                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -79,12 +96,9 @@ public class MainActivity extends AppCompatActivity {
             public void onNoteClick(DocumentSnapshot documentSnapshot, int position) {
                 String docId = documentSnapshot.getReference().getId();
                 Log.d("main", "main: docId: " + docId);
-
-                NoteDetailFragment noteDetailFragment = NoteDetailFragment.newInstance(docId);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, noteDetailFragment)
-                        .addToBackStack("note")
-                        .commit();
+                Intent intent = new Intent(MainActivity.this, ViewNoteActivity.class);
+                intent.putExtra(DOC_ID, docId);
+                startActivity(intent);
             }
         });
     }

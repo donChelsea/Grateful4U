@@ -1,4 +1,4 @@
-package com.example.grateful4u;
+package com.example.grateful4u.model;
 
 public class Note {
 

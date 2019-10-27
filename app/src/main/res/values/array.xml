@@ -4,14 +4,9 @@
         <item>Calm</item>
         <item>Excited</item>
         <item>Interested</item>
-        <item>Content</item>
         <item>Confused</item>
-        <item>Motivated</item>
         <item>Inspired</item>
         <item>Happy</item>
-        <item>Good</item>
         <item>Sad</item>
-        <item>Less than good</item>
-        <item>Angry</item>
     </string-array>
 </resources>

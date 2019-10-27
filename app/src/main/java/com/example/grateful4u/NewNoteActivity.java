@@ -6,15 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.grateful4u.model.Note;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,8 +26,15 @@ public class NewNoteActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private String date;
     Spinner spinner;
-    public String docId;
-
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static int moodHappy;
+    public static int moodCalm;
+    public static int moodExcited;
+    public static int moodInterested;
+    public static int moodInspired;
+    public static int moodSad;
+    public static int moodConfused;
+    public static int documentCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +49,13 @@ public class NewNoteActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
         titleEt = findViewById(R.id.edittext_title);
         descriptionEt = findViewById(R.id.edittext_description);
         moodTitleTv = findViewById(R.id.textview_pick_mood);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,6 +83,30 @@ public class NewNoteActivity extends AppCompatActivity {
         date = dateFormat.format(calendar.getTime());
         String mood = spinner.getSelectedItem().toString();
 
+        switch ((int) spinner.getSelectedItemId()) {
+            case 0:
+                moodCalm = moodCalm + 1;
+                return;
+            case 1:
+                moodExcited = moodExcited + 1;
+                return;
+            case 2:
+                moodInterested = moodInterested + 1;
+                return;
+            case 3:
+                moodConfused = moodConfused + 1;
+                return;
+            case 4:
+                moodInspired = moodInspired + 1;
+                return;
+            case 5:
+                moodHappy = moodHappy + 1;
+                return;
+            case 6:
+                moodSad = moodSad + 1;
+                return;
+        }
+
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this, "To finish that thought...", Toast.LENGTH_SHORT).show();
         } else {
@@ -86,5 +117,15 @@ public class NewNoteActivity extends AppCompatActivity {
             finish();
         }
 
+//        db.collection("Notebook").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                documentCount = queryDocumentSnapshots.size();
+//            }
+//        });
+//
+//        Log.d("newnote", "new note: " + moodInspired/documentCount);
+
     }
+
 }

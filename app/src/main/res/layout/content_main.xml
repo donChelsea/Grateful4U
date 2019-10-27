@@ -8,6 +8,11 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recycler_view"
     android:layout_width="match_parent"
@@ -20,5 +25,12 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp" />
+
+    <Button
+        android:id="@+id/button_mood_frag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to mood frag"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
