@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/journal_item"
+        android:title="My Journal"
+        android:icon="@drawable/ic_person_white_24dp" />
+
+    <item
+        android:id="@+id/mood_chart_item"
+        android:title="Mood chart"
+        android:icon="@drawable/ic_mood_black_24dp"/>
+</menu>

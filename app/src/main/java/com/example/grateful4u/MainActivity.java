@@ -8,8 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +21,7 @@ import com.example.grateful4u.controller.NoteAdapter;
 import com.example.grateful4u.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private NoteAdapter adapter;
     public static final String DOC_ID = "doc id";
     FirebaseAuth firebaseAuth;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = findViewById(R.id.fab_add_note);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +57,28 @@ public class MainActivity extends AppCompatActivity {
         setUpRecyclerView();
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        navView = findViewById(R.id.nav_view);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.journal_item) {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    return true;
+                } else if (id == R.id.mood_chart_item) {
+                    startActivity(new Intent(getApplicationContext(), ViewMoodActivity.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -110,11 +140,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_view_mood) {
-            startActivity(new Intent(MainActivity.this, ViewMoodActivity.class));
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
-        } else if (id == R.id.action_logout) {
+        }
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
             firebaseAuth.signOut();
             startActivity(new Intent(MainActivity.this, AuthenticateActivity.class));
         }

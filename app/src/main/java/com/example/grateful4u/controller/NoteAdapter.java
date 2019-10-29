@@ -3,6 +3,7 @@ package com.example.grateful4u.controller;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.NoteHolder> {
     public OnNoteClickListenerInterface listenerInterface;
-
 
     public NoteAdapter(@NonNull FirestoreRecyclerOptions<Note> options) {
         super(options);
@@ -59,6 +59,7 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
                     }
                 }
             });
+
         }
 
         public void onBind(Note note) {
@@ -67,6 +68,8 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
             descriptionTv.setText(note.getDescription());
             moodTv.setText(note.getMood());
         }
+
+
     }
 
     public interface OnNoteClickListenerInterface {
