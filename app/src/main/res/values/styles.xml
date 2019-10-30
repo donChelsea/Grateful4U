@@ -4,12 +4,11 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/stPatricksBlue</item>
-        <item name="colorPrimaryDark">@color/royalBlue</item>
+        <item name="colorPrimaryDark">@color/stPatricksBlue</item>
         <item name="colorAccent">@color/middleBluePurple</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
     </style>
