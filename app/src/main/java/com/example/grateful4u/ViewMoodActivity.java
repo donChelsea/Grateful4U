@@ -8,12 +8,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.grateful4u.model.Note;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -76,6 +78,9 @@ public class ViewMoodActivity extends AppCompatActivity {
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(Color.WHITE);
         pieChart.setTransparentCircleRadius(61f);
+        pieChart.setCenterTextTypeface(Typeface.SANS_SERIF);
+        pieChart.setEntryLabelTypeface(Typeface.SANS_SERIF);
+        pieChart.animateY(3000, Easing.EaseOutBack);
 
         ArrayList<PieEntry> yValues = new ArrayList<>();
 

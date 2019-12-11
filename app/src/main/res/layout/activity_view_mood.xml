@@ -15,7 +15,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:theme="@style/AppTheme.NoActionBar">
 
             <androidx.appcompat.widget.Toolbar
@@ -31,7 +31,8 @@
             android:id="@+id/pie_chart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/gradient_mood" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
