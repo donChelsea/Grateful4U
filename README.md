@@ -4,7 +4,6 @@ Note based journal app implementing Firebase Firestore and Firebase Auth <br />
 <br />
 
 Save notes on just about anything! <br />
-<br />
 <a href="https://lunapic.com"><img src="https://i.imgur.com/I18Sj64.png" border=0></a> <br />
 <br />
 
