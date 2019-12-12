@@ -58,9 +58,7 @@ public class ViewMoodActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 if (id == R.id.journal_item) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    return true;
-                } else if (id == R.id.mood_chart_item) {
-                    startActivity(new Intent(getApplicationContext(), ViewMoodActivity.class));
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     return true;
                 }
                 return false;

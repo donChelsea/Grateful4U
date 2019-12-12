@@ -1,6 +1,5 @@
 package com.example.grateful4u;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +26,6 @@ public class NewNoteActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private String date;
     Spinner spinner;
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
     int color;
 
     @Override
@@ -76,30 +74,6 @@ public class NewNoteActivity extends AppCompatActivity {
         dateFormat = new SimpleDateFormat("EEE, MM/dd/yyyy");
         date = dateFormat.format(calendar.getTime());
         String mood = spinner.getSelectedItem().toString();
-
-//        switch (mood) {
-//            case "Calm":
-//                color = R.color.royalBlue;
-//                return;
-//            case "Excited":
-//                color = Color.RED;
-//                return;
-//            case "Interested":
-//                color = Color.GREEN;
-//                return;
-//            case "Confused":
-//                color = Color.CYAN;
-//                return;
-//            case "Inspired":
-//                color = Color.MAGENTA;
-//                return;
-//            case "Happy":
-//                color = Color.BLUE;
-//                return;
-//            case "Sad":
-//                color = Color.LTGRAY;
-//                return;
-//        }
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this, "To finish that thought...", Toast.LENGTH_SHORT).show();
