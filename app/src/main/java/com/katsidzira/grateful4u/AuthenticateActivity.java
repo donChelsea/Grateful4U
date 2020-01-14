@@ -1,4 +1,4 @@
-package com.example.grateful4u;
+package com.katsidzira.grateful4u;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

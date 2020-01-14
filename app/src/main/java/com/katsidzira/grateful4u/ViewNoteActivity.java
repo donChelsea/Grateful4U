@@ -1,17 +1,17 @@
-package com.example.grateful4u;
+package com.katsidzira.grateful4u;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.grateful4u.model.Note;
+import com.katsidzira.grateful4u.model.Note;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import static com.example.grateful4u.MainActivity.DOC_ID;
+import static com.katsidzira.grateful4u.MainActivity.DOC_ID;
 
 public class ViewNoteActivity extends AppCompatActivity {
     protected TextView titleTv, descriptionTv, dateTv, moodTv;

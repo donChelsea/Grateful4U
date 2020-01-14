@@ -1,4 +1,4 @@
-package com.example.grateful4u;
+package com.katsidzira.grateful4u;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.grateful4u.model.Note;
+import com.katsidzira.grateful4u.model.Note;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 

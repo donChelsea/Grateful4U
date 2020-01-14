@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:623947706479:android:687bdabe76fec822c59d9a",
         "android_client_info": {
-          "package_name": "com.example.grateful4u"
+          "package_name": "com.katsidzira.grateful4u"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "623947706479-p79jmp5buircb0c02ksdk538735e21rl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.grateful4u",
+            "package_name": "com.katsidzira.grateful4u",
             "certificate_hash": "fdf30e8e615eee64773c707803a9e3c9537710c1"
           }
         },

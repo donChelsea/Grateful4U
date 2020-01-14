@@ -1,4 +1,4 @@
-package com.example.grateful4u;
+package com.katsidzira.grateful4u;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.grateful4u.controller.NoteAdapter;
-import com.example.grateful4u.model.Note;
+import com.katsidzira.grateful4u.controller.NoteAdapter;
+import com.katsidzira.grateful4u.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
