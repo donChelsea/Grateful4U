@@ -1,5 +1,6 @@
 # Grateful4U
-Note based journal app implementing Firebase Firestore and Firebase Auth <br /> 
+Note based journal app implementing Firebase Firestore and Firebase Auth. Currently available on Google Play! <br /> 
+<br></br>
 <a href="https://lunapic.com"><img src="https://i.imgur.com/WichW9M.png" border=0></a> <br />
 <br />
 
