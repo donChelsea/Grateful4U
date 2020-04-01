@@ -4,7 +4,6 @@ Grateful4U is a note based journaling app to help any user who is experiencing s
 This app is currently available on Google Play.<br>
 <a href="https://play.google.com/store/apps/details?id=com.katsidzira.grateful4u"><img src="https://freeiconshop.com/wp-content/uploads/edd/google-play-badge-128x128.png" border=0></a>
 
-Firebase Firestore and Firebase Auth. Currently available on Google Play! <br /> 
 <br></br>
 <a href="https://lunapic.com"><img src="https://i.imgur.com/WichW9M.png" border=0></a>
 <a href="https://lunapic.com"><img src="https://i.imgur.com/I18Sj64.png" border=0></a> <a href="https://lunapic.com"><img src="https://i.imgur.com/J8BZhzr.png" border=0></a>
