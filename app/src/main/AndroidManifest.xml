@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.katsidzira.grateful4u.AuthenticateActivity">
+        <activity android:name="com.katsidzira.grateful4u.view.AuthenticateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.katsidzira.grateful4u.ViewMoodActivity" />
+        <activity android:name="com.katsidzira.grateful4u.view.ViewMoodActivity" />
         <activity
-            android:name="com.katsidzira.grateful4u.ViewNoteActivity"
-            android:parentActivityName="com.katsidzira.grateful4u.MainActivity" />
+            android:name="com.katsidzira.grateful4u.view.ViewNoteActivity"
+            android:parentActivityName="com.katsidzira.grateful4u.view.MainActivity" />
         <activity
-            android:name="com.katsidzira.grateful4u.NewNoteActivity"
-            android:parentActivityName="com.katsidzira.grateful4u.MainActivity" />
+            android:name="com.katsidzira.grateful4u.view.NewNoteActivity"
+            android:parentActivityName="com.katsidzira.grateful4u.view.MainActivity" />
         <activity
-            android:name="com.katsidzira.grateful4u.MainActivity"
+            android:name="com.katsidzira.grateful4u.view.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">

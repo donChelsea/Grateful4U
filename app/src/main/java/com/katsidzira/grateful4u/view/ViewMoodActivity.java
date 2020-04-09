@@ -1,4 +1,4 @@
-package com.katsidzira.grateful4u;
+package com.katsidzira.grateful4u.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.katsidzira.grateful4u.R;
 import com.katsidzira.grateful4u.model.Note;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -24,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.katsidzira.grateful4u.view.MainActivity;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;

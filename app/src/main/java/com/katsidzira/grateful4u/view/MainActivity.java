@@ -1,4 +1,4 @@
-package com.katsidzira.grateful4u;
+package com.katsidzira.grateful4u.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.katsidzira.grateful4u.R;
 import com.katsidzira.grateful4u.controller.NoteAdapter;
 import com.katsidzira.grateful4u.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;

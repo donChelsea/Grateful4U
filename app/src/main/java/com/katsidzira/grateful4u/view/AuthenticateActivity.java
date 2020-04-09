@@ -1,4 +1,4 @@
-package com.katsidzira.grateful4u;
+package com.katsidzira.grateful4u.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.katsidzira.grateful4u.R;
 
 public class AuthenticateActivity extends AppCompatActivity {
     EditText emailEt, passwordEt;
