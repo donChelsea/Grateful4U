@@ -42,26 +42,29 @@ public class AuthenticateActivity extends AppCompatActivity {
         signUpTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email = emailEt.getText().toString();
-                password = passwordEt.getText().toString();
-                if (email.trim().isEmpty()) {
-                    emailEt.setError("Please enter your email address");
-                } else if (password.trim().isEmpty()) {
-                    passwordEt.setError("Please enter your password");
-                } else if (email.isEmpty() && password.isEmpty()) {
-                    Toast.makeText(AuthenticateActivity.this, "Fields are empty", Toast.LENGTH_SHORT).show();
-                } else if (!email.trim().isEmpty() && !password.trim().isEmpty()) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(AuthenticateActivity.this, "Unable to register", Toast.LENGTH_SHORT).show();
-                            } else {
-                                startActivity(new Intent(AuthenticateActivity.this, MainActivity.class));
-                            }
-                        }
-                    });
-                }
+                Intent intent = new Intent(v.getContext(), CreateAccountActivity.class);
+                v.getContext().startActivity(intent);
+
+//                email = emailEt.getText().toString();
+//                password = passwordEt.getText().toString();
+//                if (email.trim().isEmpty()) {
+//                    emailEt.setError("Please enter your email address");
+//                } else if (password.trim().isEmpty()) {
+//                    passwordEt.setError("Please enter your password");
+//                } else if (email.isEmpty() && password.isEmpty()) {
+//                    Toast.makeText(AuthenticateActivity.this, "Fields are empty", Toast.LENGTH_SHORT).show();
+//                } else if (!email.trim().isEmpty() && !password.trim().isEmpty()) {
+//                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if (!task.isSuccessful()) {
+//                                Toast.makeText(AuthenticateActivity.this, "Unable to register", Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                startActivity(new Intent(AuthenticateActivity.this, MainActivity.class));
+//                            }
+//                        }
+//                    });
+//                }
             }
         });
 
