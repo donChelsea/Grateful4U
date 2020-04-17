@@ -1,11 +1,14 @@
 package com.katsidzira.grateful4u.controller;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.katsidzira.grateful4u.model.Note;
@@ -41,6 +44,7 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
     class NoteHolder extends RecyclerView.ViewHolder {
         protected TextView titleTv, dateTv, descriptionTv, moodTv;
 
+
         public NoteHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -68,7 +72,6 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
             moodTv.setText(note.getMood());
         }
 
-
     }
 
     public interface OnNoteClickListenerInterface {
@@ -78,6 +81,7 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
     public void setOnNoteClickListener(OnNoteClickListenerInterface listener) {
         this.listenerInterface = listener;
     }
+
 
 
 }

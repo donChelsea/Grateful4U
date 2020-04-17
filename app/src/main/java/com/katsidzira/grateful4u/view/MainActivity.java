@@ -1,6 +1,10 @@
 package com.katsidzira.grateful4u.view;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +34,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import javax.annotation.CheckForNull;
+
 public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference noteBookRef = db.collection("Notebook");
@@ -37,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navView;
+    public static final String CHANNEL_ID = "channel1";
+    private final int NOTIFICIATION_ID = 1;
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        createNotificationChannel();
+
+
     }
 
     private void setUpRecyclerView() {
@@ -103,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 adapter.deleteItem(viewHolder.getAdapterPosition());
+                sendOnChannel1();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -149,4 +165,28 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel  channel1 = new NotificationChannel(
+                    CHANNEL_ID, "channel1", NotificationManager.IMPORTANCE_DEFAULT);
+
+            channel1.setDescription("This is channel 1");
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel1);
+        }
+    }
+
+    public void sendOnChannel1() {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications_white_24dp)
+                .setContentTitle("Grateful4U")
+                .setContentText("A note was deleted")
+                .build();
+
+        notificationManagerCompat.notify(NOTIFICIATION_ID, notification);
+    }
+
+
 }
