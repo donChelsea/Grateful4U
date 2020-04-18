@@ -34,8 +34,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import javax.annotation.CheckForNull;
-
 public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference noteBookRef = db.collection("Notebook");
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navView;
     public static final String CHANNEL_ID = "channel1";
-    private final int NOTIFICIATION_ID = 1;
+    private final int NOTIFICATION_ID = 1;
     private NotificationManagerCompat notificationManagerCompat;
 
     @Override
@@ -162,8 +160,15 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
             startActivity(new Intent(MainActivity.this, AuthenticateActivity.class));
+        } else if (id == R.id.action_set_alarm) {
+            goToAlarmFragment();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToAlarmFragment() {
+        Intent intent = new Intent(this, AlarmActivity.class);
+        startActivity(intent);
     }
 
     public void createNotificationChannel() {
@@ -185,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentText("A note was deleted")
                 .build();
 
-        notificationManagerCompat.notify(NOTIFICIATION_ID, notification);
+        notificationManagerCompat.notify(NOTIFICATION_ID, notification);
     }
 
 

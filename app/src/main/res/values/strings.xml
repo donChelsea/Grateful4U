@@ -7,4 +7,6 @@
     <string name="new_here_sign_up">New here? Sign up</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="set_alarm">Set alarm</string>
+    <string name="time_for_alarm">Time for alarm</string>
 </resources>

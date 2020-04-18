@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.CreateAccountActivity"></activity>
+        <activity android:name=".view.AlarmActivity"
+            android:parentActivityName=".view.MainActivity"></activity>
+        <activity android:name=".view.CreateAccountActivity" />
         <activity android:name=".view.AuthenticateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +30,9 @@
             android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name=".AlertReceiver"/>
     </application>
 
 </manifest>

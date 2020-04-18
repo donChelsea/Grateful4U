@@ -4,9 +4,18 @@
     tools:context="com.katsidzira.grateful4u.view.MainActivity">
 
     <item
+        android:id="@+id/action_set_alarm"
+        android:orderInCategory="100"
+        android:title="Set alarm"
+        android:icon="@drawable/ic_add_alarm_white_24dp"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/action_logout"
         android:orderInCategory="200"
         android:title="Log out"
-        app:showAsAction="never"
+        android:icon="@drawable/ic_launch_white_24dp"
+        app:showAsAction="ifRoom"
         />
 </menu>
